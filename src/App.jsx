@@ -1,7 +1,10 @@
 import { useState } from "react";
 import supabase from "./supabase";
 import { insertData, getData } from "./supabase";
-const supabaseConcepts = await getData();
+try {
+  const supabaseConcepts = await getData();
+} catch (error) {}
+
 const data = [
   { id: 1, title: "python basics", completed: true },
   { id: 2, title: "statistics concepts", completed: false },
@@ -31,7 +34,7 @@ const data = [
 ];
 
 export default function App() {
-  console.log(supabaseConcepts)
+  console.log(supabaseConcepts);
   return (
     <div>
       <Header />
@@ -41,31 +44,31 @@ export default function App() {
 }
 
 function Header() {
-  const [count, setCount] = useState(79)
-    const [newData, setNewData] = useState({
+  const [count, setCount] = useState(79);
+  const [newData, setNewData] = useState({
     id: 0,
     title: "",
     completed: false,
   });
-  function addButtonClick() { 
+  function addButtonClick() {
     insertData(newData);
-    console.log(newData) 
-    setCount(count=> count+1)
+    console.log(newData);
+    setCount((count) => count + 1);
     setNewData({
-      id:count,
-      title:'', 
-      completed: false
-    })
-  }
-  function inputValue(e){
-    setNewData({
-      id:count,
-      title:e.target.value,
-      completed: false
+      id: count,
+      title: "",
+      completed: false,
     });
   }
-  function handleKeyDown(e){
-    if (e.key==='Enter') addButtonClick()
+  function inputValue(e) {
+    setNewData({
+      id: count,
+      title: e.target.value,
+      completed: false,
+    });
+  }
+  function handleKeyDown(e) {
+    if (e.key === "Enter") addButtonClick();
   }
   return (
     <div className="border bg-gradient-to-r from-blue-500 to-red-500 text-white">
@@ -75,7 +78,7 @@ function Header() {
         type="text"
         className="border rounded-full px-4 mb-4"
         placeholder="enter concept"
-        onChange={(e)=>inputValue(e)}
+        onChange={(e) => inputValue(e)}
         value={newData.title}
         onKeyDown={handleKeyDown}
       ></input>
@@ -119,7 +122,7 @@ function Concept() {
         );
       })}
       <p>new</p>
-       {supabaseConcepts.map((concept) => {
+      {supabaseConcepts.map((concept) => {
         return (
           <div
             key={concept.id}
