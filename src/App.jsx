@@ -1,11 +1,6 @@
 import { useEffect, useState } from "react";
 import supabase from "./supabase";
 import { insertData, getData } from "./supabase";
-useEffect(async function () {
-  try {
-    const supabaseConcepts1 = await getData();
-  } catch (error) {}
-}, []);
 
 const data = [
   { id: 1, title: "python basics", completed: true },
@@ -37,6 +32,11 @@ const data = [
 
 export default function App() {
   console.log(supabaseConcepts);
+  useEffect(async function () {
+    try {
+      const supabaseConcepts1 = await getData();
+    } catch (error) {}
+  }, []);
   return (
     <div>
       <Header />
