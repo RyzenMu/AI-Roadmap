@@ -31,11 +31,7 @@ const data = [
 ];
 
 export default function App() {
-  useEffect(async function () {
-    try {
-      const supabaseConcepts1 = await getData();
-    } catch (error) {}
-  }, []);
+ 
   return (
     <div>
       <Header />
@@ -102,6 +98,19 @@ function MainContent() {
 }
 
 function Concept() {
+  const [supabaseConcepts1, setSupabaseConcepts1] = useState([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const data = await getData();
+        setSupabaseConcepts1(data);
+      } catch (error) {
+        console.error("Failed to fetch Supabase data:", error);
+      }
+    }
+    fetchData();
+  }, []);
   return (
     <div className="flex w-[100vw] flex-wrap gap-2 justify-center">
       {data.map((concept) => {
