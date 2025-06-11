@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import supabase from "./supabase";
 import { insertData, getData } from "./supabase";
-try {
-  const supabaseConcepts1 = await getData();
-} catch (error) {}
+useEffect(async function () {
+  try {
+    const supabaseConcepts1 = await getData();
+  } catch (error) {}
+}, []);
 
 const data = [
   { id: 1, title: "python basics", completed: true },
