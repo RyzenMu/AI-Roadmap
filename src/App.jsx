@@ -31,7 +31,6 @@ const data = [
 ];
 
 export default function App() {
-  console.log(supabaseConcepts);
   useEffect(async function () {
     try {
       const supabaseConcepts1 = await getData();
