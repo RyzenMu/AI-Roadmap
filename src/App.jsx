@@ -2,7 +2,7 @@ import { useState } from "react";
 import supabase from "./supabase";
 import { insertData, getData } from "./supabase";
 try {
-  const supabaseConcepts = await getData();
+  const supabaseConcepts1 = await getData();
 } catch (error) {}
 
 const data = [
@@ -122,7 +122,7 @@ function Concept() {
         );
       })}
       <p>new</p>
-      {supabaseConcepts.map((concept) => {
+      {supabaseConcepts1.map((concept) => {
         return (
           <div
             key={concept.id}
